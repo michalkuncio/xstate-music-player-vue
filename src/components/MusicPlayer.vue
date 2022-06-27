@@ -112,8 +112,15 @@ function rewindTrack() {
 
 function startOrContinueProgressTimer() {
     progressInterval = setInterval(() => {
+        checkForTrackEnd();
         currentTrackProgress.value += 1;
     }, 1000);
+}
+
+function checkForTrackEnd() {
+    if (currentTrackProgress.value === currentTrack.value.length) {
+        nextTrack();
+    }
 }
 
 function resetTimer() {
