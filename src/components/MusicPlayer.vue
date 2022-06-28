@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onUnmounted, ref } from "vue";
 import { useMachine } from "@xstate/vue";
 import { playerMachine } from "./../machines/playerMachine";
 
@@ -127,6 +127,10 @@ function resetTimer() {
     currentTrackProgress.value = 0;
     progressInterval && clearInterval(progressInterval);
 }
+
+onUnmounted(() => {
+    progressInterval && clearInterval(progressInterval);
+});
 </script>
 
 <template>
